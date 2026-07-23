@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Word Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #word-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+            min-height: 60px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Random Word Generator</h1>
+        <!-- This element displays the random word -->
+        <div id="word-display">Click Generate!</div>
+        <!-- This button triggers the JavaScript function -->
+        <button id="generate-btn">Generate Word</button>
+    </div>
+
+    <script>
+        // 1. Create a list (array) of words to choose from
+        const words = ["Ball Sack", "Lizard penis", "testicular torsion", "iglooing", "poo breath", "mexican ripstart", "micro penis", "steamy creamy", "tom pearl", "pop a lugi g"];
+
+        // 2. Target the HTML elements
+        const wordDisplay = document.getElementById("word-display");
+        const generateBtn = document.getElementById("generate-btn");
+
+        // 3. Define the function to pick and display a random word
+        function generateRandomWord() {
+            // Pick a random math index between 0 and the length of the array minus 1
+            const randomIndex = Math.floor(Math.random() * words.length);
+            
+            // Fetch the word using the random index
+            const selectedWord = words[randomIndex];
+            
+            // Update the HTML text content
+            wordDisplay.textContent = selectedWord;
+        }
+
+        // 4. Listen for button clicks to trigger the function
+        generateBtn.addEventListener("click", generateRandomWord);
+    </script>
+
+</body>
+</html>
