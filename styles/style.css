@@ -74,6 +74,32 @@ body.profile-body {
     margin: 100px auto 0 auto;
 }
 
+.box {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 90%;
+}
+
+#shop-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 75px auto 100px auto;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+}
+
+#filter {
+    width: 100%;
+    max-width: 250px;
+    margin: 20px;
+    padding: 20px;
+}
+
 .form-box {
     display: none;
 }
@@ -283,3 +309,40 @@ footer ul li:first-child a {
     font-weight: bold;
     color: #fff;
 }   
+
+.merch {
+    display: flex;
+    background-color: #2a2a2a;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.merch img {
+    width: 100%;
+    max-width: 170px;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px;
+}
+
+#red {
+    color: red;
+}
+
+#green {
+    color: lime;
+}
+
+#title {
+    margin-top: 75px;
+    text-align: center;
+    color: orange;
+    font-size: 3em;
+}

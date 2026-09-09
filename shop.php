@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+require_once 'config.php';
+
+$rows = $conn->query("SELECT * FROM shop_items");
+$selected_catagory = $_POST['catagory'] ?? '';
+
+$empty = FALSE;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +32,56 @@
         <a href="explore.php">EXPLORE</a>
     </nav>
 
-    <div class='place-holder'></div>
+    <div class='grid'>
+        <div class='box' id='filter'>
+            <form action="" method="post">
+                <h2>Filter</h2>
+                <p>Catagory:</p>
+                <select name="catagory">
+                    <option value="">All</option>
+                    <option value="gear" <?= ($selected_catagory === 'gear') ? 'selected' : ''; ?>>Gear</option>
+                    <option value="resource" <?= ($selected_catagory === 'resource') ? 'selected' : ''; ?>>Resources</option>
+                </select>
+                <button type="submit" name="save">Save</button>
+            </form>
+        </div>
+
+        <div>
+            <h1 id='title'>Shop</h1>
+            <div class='box' id='shop-container'>
+                <?php
+
+                foreach ($rows as $row) {
+                    if ($selected_catagory !== '') {
+                        if ($row['catagory'] === $selected_catagory) {
+                            $name = $row['item-name'];
+                            $cost = "$" . $row['cost'];
+                            $img = "<img src='" . $row['img-src'] . "'>";
+                            $stock = ($row['stock'] > 0) ? "<span id='green'>In Stock</span>" : "<span id='red'>Out of Stock</span>";
+            
+                            echo "<div class='merch'>" . $name . "&nbsp;&nbsp;-&nbsp;&nbsp;" . $cost . $img . $stock . "</div>";
+                            $empty = TRUE;
+                        }
+                    } else {
+                        $name = $row['item-name'];
+                        $cost = "$" . $row['cost'];
+                        $img = "<img src='" . $row['img-src'] . "'>";
+                        $stock = ($row['stock'] > 0) ? "<span id='green'>In Stock</span>" : "<span id='red'>Out of Stock</span>";
+
+                        echo "<div class='merch'>" . $name . "&nbsp;&nbsp;-&nbsp;&nbsp;" . $cost . $img . $stock . "</div>";
+                        $empty = TRUE;
+                    }
+
+                }
+
+                if ($empty === FALSE) {
+                    echo "<h1>Sorry no results found :(</h1>";
+                }
+
+                ?>
+            </div>
+        </div>
+    </div>
 
 </body>
 <footer>
